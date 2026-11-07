@@ -1,0 +1,50 @@
+name: mathematics
+description: "Student Attendance Management System - Arabic RTL Flutter App"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.13.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # Database
+  sqflite: ^2.3.0
+  # Web SQLite backend: sqlite3 compiled to WASM, persists in IndexedDB
+  sqflite_common_ffi_web: ^1.2.0
+  # Used directly for the global `databaseFactory` on the web
+  sqflite_common: ^2.5.14
+  path_provider: ^2.1.2
+  path: ^1.9.0
+
+  # File handling
+  file_picker: ^8.0.0
+  image_picker: ^1.1.0
+  pdf: ^3.11.0
+  excel: ^4.0.6
+  open_filex: ^4.3.2
+  share_plus: ^11.0.0
+  # Browser interop used by the web file/download seam
+  web: ^1.0.0
+
+  # OCR (Android only - offline)
+  google_ml_kit: ^0.13.0
+
+  # Utilities
+  intl: ^0.20.3
+  uuid: ^4.4.0
+  collection: ^1.19.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
