@@ -10,7 +10,7 @@
 ## 1. Test Environment
 
 | Item | Value |
-|------|-------|
+| ------ | ------- |
 | OS | Microsoft Windows [Version 10.0.26200.9818] (Windows 11, 25H2) |
 | Flutter | 3.50.0-1.0.pre-107 (stable) |
 | Dart | 3.13.7 |
@@ -23,7 +23,7 @@
 ## 2. Executed Tests & Results
 
 | # | Test | Method | Result |
-|---|------|--------|--------|
+| --- | ------ | -------- | -------- |
 | 1 | Application startup | Launched `build\windows\x64\runner\Release\mathsmatics.exe`; process appeared and window opened | **PASS** |
 | 2 | Application shutdown | `Stop-Process` on the running app; process exited cleanly | **PASS** |
 | 3 | Flutter static analysis | `flutter analyze` | **PASS** — "No issues found" |
@@ -43,7 +43,8 @@
 | 17 | Regression | `flutter test` → "All tests passed" (widget smoke test + persistence test; 3 web-only tests skipped) | **PASS** |
 
 ### Flutter test suite (`flutter test`)
-```
+
+ ```
 loading test/persistence_check.dart
 +1: sqflite FFI persists a student across close/reopen at %APPDATA%\Mathsmatics
 loading test/widget_test.dart

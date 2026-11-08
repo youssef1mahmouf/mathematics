@@ -13,12 +13,14 @@
 This repository is **not** a JavaScript / Node.js / Express full-stack web application. It is a **Flutter (Dart) desktop application** titled "Student Attendance Management System - Arabic RTL Flutter App" (`pubspec.yaml` name: `mathematics`, version `1.0.0+1`).
 
 The task brief repeatedly assumes:
+
 - separate frontend + backend,
 - API routes, controllers, middleware,
 - user registration/login, sessions, role-based permissions,
 - an Electron wrapper binding a local backend to `127.0.0.1`.
 
 **None of that exists here.** There is:
+
 - **No backend server** (no Node/Express/Python backend, no API routes, no controllers).
 - **No authentication system** (no registration, no login, no sessions/tokens, no role-based access control).
 - **No email service** and **no notification service**.
@@ -29,7 +31,7 @@ The task brief repeatedly assumes:
 ## 2. Project Identity
 
 | Field | Value |
-|-------|-------|
+| ------- | ------- |
 | Repository root | `d:\Linux-Transfer\Code\ECU WEB\mathematics` |
 | pubspec project name | `mathematics` |
 | Display / task name | Mathsmatics |
@@ -45,6 +47,7 @@ The task brief repeatedly assumes:
 ## 3. Repository Structure (source files only — build/pub-cache artifacts excluded)
 
 Top-level:
+
 - `lib/` — all Dart application source (UI, models, services, database, platform)
 - `windows/` — native Windows C++ runner + CMake (produces the `.exe`)
 - `web/` — web build assets (only relevant to the Chrome/Edge web target)
@@ -56,6 +59,7 @@ Top-level:
 - `build/` — generated build artifacts (NOT source)
 
 All `lib/` source files:
+
 - `lib/main.dart` — app entry point, `AttendanceApp`, global `appDatabase`
 - `lib/database/app_database.dart` — singleton DB access + all CRUD for students/sessions/attendance
 - `lib/database/database_setup.dart` — conditional export (io vs web)
@@ -77,7 +81,7 @@ All `lib/` source files:
 This is a **single-tier** app: each Flutter screen calls a Dart service directly, which calls `AppDatabase` (SQLite). There is **no HTTP layer, no API, no backend server**.
 
 | # | Feature | Frontend (screen) | Service / backend | DB table | Status | Local or remote |
-|---|---------|-------------------|-------------------|----------|--------|-----------------|
+| --- | --------- | ------------------- | ------------------- | ---------- | -------- | ----------------- |
 | 1 | Dashboard / statistics | `dashboard.dart` | `AppDatabase` directly | students, sessions, attendance_records | Complete | Local |
 | 2 | Student list (search + group filter) | `student_list.dart` | `AppDatabase.getStudents` | students | Complete (group picklist hardcoded) | Local |
 | 3 | Import students | `import_students.dart` | `ImportService` | students | Partial — Excel works; PDF & DOCX return empty (stubs) | Local file picker |
@@ -87,6 +91,7 @@ This is a **single-tier** app: each Flutter screen calls a Dart service directly
 | 7 | Arabic chat assistant | `chat.dart` | `ChatService` | sessions | Stub — most commands tell user to "do it manually from the screen" | Local |
 
 **Features required by the task brief that are ABSENT from this codebase** (not part of this app's scope; documented, not invented unless explicitly requested):
+
 - User registration / login
 - Authentication & sessions (beyond attendance sessions)
 - Role-based permissions / admin users
@@ -101,11 +106,13 @@ This is a **single-tier** app: each Flutter screen calls a Dart service directly
 **Database:** SQLite via `sqflite: ^2.3.0`. Schema version 1 (no migration table or migration strategy exists).
 
 **Tables:**
+
 - `students(id TEXT PK, student_id TEXT, name TEXT, group_name TEXT, source_file TEXT, source_list TEXT, created_at TEXT, status INTEGER DEFAULT 0, UNIQUE(student_id, source_list))`
 - `sessions(id TEXT PK, name TEXT, subject TEXT, group_name TEXT, date TEXT, created_at TEXT, status INTEGER DEFAULT 0, image_path TEXT, notes TEXT)`
 - `attendance_records(id TEXT PK, session_id TEXT FK->sessions(id), student_id TEXT, student_name TEXT, student_group TEXT, status INTEGER DEFAULT 2, check_in_time TEXT, time_manually_edited INTEGER, time_edited_at TEXT, matched_by TEXT, match_confidence REAL, needs_review INTEGER, review_notes TEXT, created_at TEXT, updated_at TEXT)`
 
 **Persistence location (Windows):**
+
 - Database: `%APPDATA%\ECU Attendance\attendance.db`
 - Backups: `%APPDATA%\ECU Attendance\backups\`
 - Reports: `%APPDATA%\ECU Attendance\reports\`
@@ -118,6 +125,7 @@ This is a **single-tier** app: each Flutter screen calls a Dart service directly
 All dependencies come from `pub.dev` (hosted). Internet is required **once** for `flutter pub get` / first build; after that the local pub cache satisfies builds. **No CDN fonts, scripts, or stylesheets are loaded at runtime.**
 
 Notable dependencies:
+
 - `sqflite`, `sqflite_common`, `sqflite_common_ffi_web` — SQLite. The `*_web` packages + `web/sqlite3.wasm` + `web/sqflite_sw.js` are **web-only**; Windows desktop uses the native `sqflite` plugin.
 - `path_provider`, `path` — file locations.
 - `file_picker`, `image_picker`, `open_filex`, `share_plus` — file/image handling.
@@ -160,7 +168,7 @@ Notable dependencies:
 ## 10. Risks
 
 | Risk | Impact | Mitigation |
-|------|--------|------------|
+| ------ | -------- | ------------ |
 | Task brief assumes Electron / Node backend; actual stack is Flutter | Plan mismatch documented | Keep Flutter; document why Electron is not used |
 | No authentication / authorization | Any local user can access/modify attendance data | Document as out-of-scope; add only if requested |
 | OCR + PDF/DOCX import non-functional | "Take attendance from photo" and bulk import degraded | Document limitations; Excel import + manual attendance work |
