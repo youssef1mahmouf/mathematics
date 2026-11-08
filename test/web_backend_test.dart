@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:mathematics/platform/platform_files.dart';
+import 'package:mathsmatics/platform/platform_files.dart';
 
 /// Exercises the `dart:js_interop` branch of the file-access seam (the
 /// `localStorage` vault plus browser downloads).

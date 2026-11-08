@@ -20,7 +20,7 @@ Future<String> databaseFilePath(String fileName) async {
   final Directory documentsDir;
   if (Platform.isWindows) {
     final appData = Platform.environment['APPDATA'] ?? '.';
-    documentsDir = Directory(p.join(appData, 'ECU Attendance'));
+    documentsDir = Directory(p.join(appData, 'Mathsmatics'));
   } else {
     documentsDir = await getApplicationDocumentsDirectory();
   }

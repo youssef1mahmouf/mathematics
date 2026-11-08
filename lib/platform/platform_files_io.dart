@@ -27,7 +27,7 @@ Future<String> appFolderPath(String folderName) async {
   final Directory base;
   final appData = Platform.environment['APPDATA'];
   if (appData != null) {
-    base = Directory(p.join(appData, 'ECU Attendance'));
+    base = Directory(p.join(appData, 'Mathsmatics'));
   } else if (Platform.isWindows) {
     base = Directory(p.join(Platform.environment['LOCALAPPDATA'] ?? '.',
         'ECU Attendance'));

@@ -9,5 +9,4 @@
 /// web bundle while leaving the native behaviour byte-for-byte unchanged.
 library;
 
-export 'database_setup_io.dart'
-    if (dart.library.js_interop) 'database_setup_web.dart';
+export 'database_setup_io.dart';
